@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en" ng-app="todoApp">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Intro to AngularJS | Winnipeg.js</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+input[type=text]  {
+	width: 500px;
+	padding: 1em;
+	font-size:20px;
+}
+button {
+	padding: 1em;
+	font-size: 20px;
+}
+		</style>
+	</head>
+
+	<body ng-controller="TodoCtrl">
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Intro to AngularJS</h1>
+					<p>
+						<small>Created by <a href="http://brenelz.com">Brenley Dueck</a> / <a href="http://twitter.com/brenelz">@brenelz</a> for <a href="http://winnipegjs.com/">Winnipeg.js</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Who Am I</h2>
+					<ul>
+
+						<li><a href="http://twitter.com/brenelz">@brenelz</a> on twitter</li>
+						<li>Work at <a href="http://graphicintuitions.com/">Graphic Intuitions</a></li>
+						<li>Work with HTML/CSS/JavaScript along with PHP</li>
+					</ul>
+
+					<p>&nbsp;</p>
+
+					<img style="float:left" src="css.gif" width="450">
+					<img style="float:left" src="ie-bugs.gif" width="450" height="338">
+
+				</section>
+
+				<section>
+					<h2>AngularJS</h2>
+					<ul>
+						<li>Who has worked with Angular?</li>
+						<li>What have you built?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What is AngularJS?</h2>
+<ul>
+	<li>JavaScript Framework</li>
+	<li>Maintained by Google</li>
+	<li>Opinionated</li>
+	<li>Great For Single Page Applications</li>
+</ul>
+				</section>
+
+
+<section>
+					<h2>AngularJS Features</h2>
+					<ul>
+						<li>Data Binding</li>
+						<li>MVC</li>		
+						<li>Routing</li>
+						<li>Filters</li>
+						<li>Directives</li>
+						<li>Dependency Injection</li>
+					</ul>
+				</section>
+
+<section>
+	<h3>AngularJS Initial Setup</h3>
+	<h6>index.html</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+&lt;!DOCTYPE html&gt;
+&lt;html ng-app=&quot;todoApp&quot;&gt;
+    &lt;head&gt;
+        &lt;title&gt;Angular App | Winnipeg.JS&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+
+        &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;js/app.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+					</code></pre>
+
+	<h6>js/app.js</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+var todoApp = angular.module('todoApp',[]);
+					</code></pre>					
+		
+</section>
+
+
+
+<section>
+<section>
+	<h3>Data Binding</h3>
+
+	<h6>index.html</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+...
+
+&lt;h3&gt;Welcome to {{location || "Winnipeg.js"}}!&lt;/h3&gt;
+&lt;p&gt;&lt;input ng-model=&quot;location&quot; placeholder=&quot;Enter Location&quot;&gt;&lt;/p&gt;
+
+...
+					</code></pre>
+
+</section>
+
+<section>
+<h3>Welcome to {[{location || "Winnipeg.js"}]}!</h3>
+
+<p><input type="text" ng-model="location" placeholder="Enter Location"></p>
+</section>
+</section>
+
+<section>
+	<h3>AngularJS Controllers</h3>
+	<h6>index.html</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+&lt;!DOCTYPE html&gt;
+&lt;html ng-app=&quot;todoApp&quot;&gt;
+    &lt;head&gt;
+        &lt;title&gt;Angular App | Winnipeg.JS&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body ng-controller="TodoCtrl"&gt;
+
+
+        &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;js/app.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+	</code></pre>
+	<h6>js/app.js</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+var todoApp = angular.module('todoApp',[]);
+todoApp.controller('TodoCtrl',function($scope){
+
+});
+					</code></pre>
+	
+</section>
+
+
+<section>
+	<h3>What is this $scope variable?</h3>
+	<ul>
+		<li>Glue between the Controller and the View</li>
+		<li>Sometimes called the ViewModel</li>
+		<li>Bind your data to this variable</li>
+	</ul>
+</section>
+
+
+<section>
+<section>
+	<h3>Using $scope</h3>
+	<h6>js/app.js</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+var todoApp = angular.module('todoApp',[]);
+todoApp.controller('TodoCtrl',function($scope){
+	$scope.name = 'Brenley';
+	$scope.todos = [
+	   'Go to work',
+	   'Grab something to eat',
+	   'Present at Winnipeg.js'
+	];
+});
+					</code></pre>
+
+<h6>index.html</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+...
+
+&lt;h2&gt;Todos List for &lt;span&gt;{{name}}&lt;/span&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+   &lt;li ng-repeat=&quot;todo in todos&quot;&gt;
+      {{todo}}
+   &lt;/li&gt;
+&lt;/ul&gt;
+...
+					</code></pre>
+
+</section>
+<section>
+
+<h2>Todos List for <span>{[{name}]}</span></h2>
+
+<ul class="list-group">
+   <li class="list-group-item" ng-repeat="todo in todos">
+      {[{todo}]}
+   </li>
+</ul>
+</section>
+</section>
+
+
+<section>
+	<h2>Questions so far?</h2>
+</section>
+<section>
+<section>
+<h3>Filters</h3>
+	<h6>index.html</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+...
+
+<p>&lt;input type=&quot;text&quot; ng-model=&quot;search&quot; placeholder=&quot;Search&quot;&gt;</p>
+
+&lt;ul&gt;
+   &lt;li ng-repeat=&quot;todo in todos | filter:search&quot;&gt;
+      {{todo}}
+   &lt;/li&gt;
+&lt;/ul&gt;
+...
+					</code></pre>
+</section>
+<section>
+
+<p><input type="text" ng-model="search" placeholder="Search"></p>
+
+<ul>
+   <li ng-repeat="todo in todos | filter:search">
+      {[{todo}]}
+   </li>
+</ul>
+
+</section>
+</section>
+
+<section>
+	<h3>Built-in Filters</h3>
+	<ul>
+		<li>filter</li>
+		<li>orderBy</li>
+		<li>uppercase/lowercase</li>
+		<li>currency</li>
+		<li>date</li>
+	</ul>
+</section>
+
+
+<section>
+<h3>Directives</h3>
+<ul>
+	<li>Adds functionality to HTML elements</li>
+
+	<li>Can be either an element or an attribute
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+&lt;date-picker&gt;&lt;/date-picker&gt;
+					</code></pre>
+							<pre><code data-trim contenteditable style="font-size: 18px;">
+&lt;div date-picker&gt;&lt;/div&gt;
+					</code></pre>
+
+	</li>
+	<li>Custom ones can be created</li>
+</ul>
+</section>
+
+<section>
+<h3>Built-in Directives</h3>
+<div class="fragments">
+	<div>
+		<strong>ngApp</strong>
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+&lt;html ng-app=&quot;todoApp&quot;&gt;
+					</code></pre>
+	</div>
+	<div class="fragment">
+		<strong>ngController</strong>
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+&lt;body ng-controller="TodoCtrl"&gt;
+					</code></pre>
+	</div>
+	<div class="fragment">
+		<strong>ngModel</strong>
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+<p>&lt;input type=&quot;text&quot; ng-model=&quot;search&quot; placeholder=&quot;Search&quot;&gt;</p>
+					</code></pre>
+	</div>
+	<div class="fragment">
+		<strong>ngRepeat</strong>
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+<ul>
+   &lt;li ng-repeat=&quot;todo in todos&quot;&gt;
+</ul>
+					</code></pre>
+	</div>
+	<div class="fragment">
+		<strong>ngClick/ngSubmit</strong>
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+&lt;button ng-click=&quot;addTodo()&quot;&gt;Add Todo&lt;/button&gt;
+					</code></pre>
+	</div>
+	<div class="fragment">
+		<strong>ngShow/ngHide</strong>
+		<pre><code data-trim contenteditable style="font-size: 18px;">
+&lt;span ng-hide=&quot;!items.length&quot; class=&quot;num&quot;&gt;{{items.length}}&lt;/span&gt;
+					</code></pre>
+	</div>
+</div>
+</section>
+
+
+<section>
+<section>
+<h3>Making AJAX requests</h3>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+todoApp.controller('TodoCtrl',function($scope,$http){
+   $http({
+       url: 'http://jsonstub.com/users',
+       method: 'GET'
+   }).success(function (data) {
+       $scope.users = data.users;
+   });
+});
+</code></pre>
+</section>
+<section>
+<h3>Making AJAX requests</h3>
+<h4>Users from JsonStub.com</h4>
+<ul>
+	<li ng-repeat="user in users">{[{user.name}]} - {[{user.job}]}</li>
+</ul>
+</section>
+</section>
+
+<section>
+	<section>
+	<h2>Simple Todo Demo</h2>
+	<h6>index.html</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+&lt;!DOCTYPE html&gt;
+&lt;html ng-app=&quot;todoApp&quot;&gt;
+    &lt;head&gt;
+        &lt;title&gt;Angular App | Winnipeg.JS&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body ng-controller="TodoCtrl"&gt;
+
+&lt;h2&gt;Todos List for &lt;span&gt;{{name}}&lt;/span&gt;&lt;/h2&gt;
+
+<p>{{todos.length}} items visible</p>
+
+&lt;ul&gt;
+   &lt;li ng-repeat=&quot;todo in todos&quot;&gt;
+      {{todo}}  | <a ng-click="deleteTodo($index)">Delete</a>
+   &lt;/li&gt;
+&lt;/ul&gt;
+
+<p>&lt;input type=&quot;text&quot; ng-model=&quot;todoNew&quot; /&gt;
+&lt;button ng-click=&quot;addTodo()&quot;&gt;Add Todo&lt;/button&gt;</p>
+
+        &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;js/app.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+	</code></pre>
+</section>
+
+
+<section>
+
+<h2>Simple Todo Demo</h2>
+	<h6>app.js</h6>
+	<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
+var todoApp = angular.module('todoApp',[]);
+todoApp.controller('TodoCtrl',function($scope){
+	$scope.name = 'Brenley';
+	$scope.todos = [
+	   'Go to work',
+	   'Grab something to eat',
+	   'Present at Winnipeg.js'
+	];
+
+	$scope.addTodo = function() {
+	    var todo = $scope.todoNew;
+	    $scope.todos.push(todo);
+	    $scope.todoNew = '';
+	};
+
+	$scope.deleteTodo = function(index) {
+	    $scope.todos.splice(index,1);
+	};
+});
+					</code></pre>
+
+
+</section>
+<section>
+
+<h2>Todos List for <span>{[{name}]}</span></h2>
+
+<p>{[{todos.length}]} items visible</p>
+
+<ul>
+   <li ng-repeat="todo in todos">
+      {[{todo}]} | <a ng-click="deleteTodo($index)">Delete</a>
+   </li>
+</ul>
+<br /><br />
+<p>
+<input type="text" ng-model="todoNew" />
+<button ng-click="addTodo()">Add Todo</button>
+</p>
+</section>
+</section>
+
+<section>
+<h3>Your Homework</h3>
+<ul>
+	<li>Routing</li>
+	<li>Custom Directives</li>
+	<li>Three-Way Data Binding with Firebase</li>
+	<li>Factories, Services, and Providers</li>
+	<li>Dependency Injection</li>
+</ul>
+</section>
+
+<section>
+	<h2>AngularJS Resources</h2>
+	<ul>
+	<li><a href="https://angularjs.org/">AngularJS.org</a></li>
+	<li><a href="https://egghead.io/technologies/angularjs">Egghead.io</a></li>
+
+	<li><a href="https://www.codeschool.com/code_tv/angularjs-part-1">AngularJS Code School Course</a></li>
+	<li><a href="https://www.youtube.com/watch?v=i9MHigUZKEM">AngularJS Fundamentals in 60-ish Minutes - Dan Wahlin</a></li>
+	<li><a href="https://www.youtube.com/watch?v=e4yUTkva_FM">Building Realtime Apps With Firebase and Angular</a></li>
+	</ul>
+</section>
+
+<section>
+	<h1>Questions?</h1>
+</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	    <script src="/js/angular.min.js"></script>
+
+<script>
+var todoApp = angular.module('todoApp',[]).config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    }
+);
+todoApp.controller('TodoCtrl',function($scope,$http){
+	$scope.name = 'Brenley';
+	$scope.todos = [
+	   'Go to work',
+	   'Grab something to eat',
+	   'Present at Winnipeg.js'
+	];
+
+	$scope.addTodo = function() {
+		var todo = $scope.todoNew;
+		$scope.todos.push(todo);
+		$scope.todoNew = '';
+	};
+
+	$scope.deleteTodo = function(id) {
+		$scope.todos.splice(id,1);
+	};
+
+	$http({
+	    url: 'http://jsonstub.com/users',
+	    method: 'GET',
+	    headers: {
+	        'JsonStub-User-Key': 'bf6f83f0-54b9-46b8-b6fd-d71a41de9927',
+	        'JsonStub-Project-Key': 'cd06d98c-acb2-4f5f-b4fe-ecb5cdce8707'
+	    }
+	}).success(function (data) {
+	    $scope.users = data.users;
+	});
+});
+</script>
+	</body>
+</html>
